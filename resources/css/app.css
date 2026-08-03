@@ -1,4 +1,7 @@
 @import 'tailwindcss';
+@plugin 'daisyui' {
+    themes: light --default;
+}
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -6,6 +9,233 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Inter', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
+    --color-brand-50: #eff8ff;
+    --color-brand-100: #dbeeff;
+    --color-brand-500: #3989d6;
+    --color-brand-600: #2872bd;
+    --color-brand-700: #225b99;
+}
+
+:root {
+    color-scheme: light;
+    --color-primary: #2872bd;
+    --color-primary-content: #ffffff;
+    --color-secondary: #10b981;
+    --color-secondary-content: #ffffff;
+    --color-accent: #14b8a6;
+    --color-accent-content: #ffffff;
+    --color-base-100: #ffffff;
+    --color-base-200: #f7f9fc;
+    --color-base-300: #e5e7eb;
+    --color-base-content: #1f2937;
+}
+
+body {
+    @apply bg-slate-50 text-slate-700 antialiased;
+    overflow-x: hidden;
+}
+
+.surface-card {
+    @apply rounded-2xl border border-gray-200 bg-white shadow-sm transition duration-200;
+}
+
+.surface-card-hover {
+    @apply hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md;
+}
+
+.form-label {
+    @apply mb-1.5 block text-sm font-semibold text-slate-700;
+}
+
+.form-error {
+    @apply mt-1 hidden text-xs font-medium text-red-500;
+}
+
+.form-error:not(:empty) {
+    @apply block;
+}
+
+.input,
+.select,
+.textarea,
+.file-input {
+    @apply min-h-11 w-full rounded-xl border-gray-200 bg-white shadow-none outline-none transition focus:border-blue-400;
+}
+
+.btn {
+    @apply min-h-11 rounded-xl font-semibold shadow-none transition duration-200;
+}
+
+.btn-primary {
+    @apply border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700;
+}
+
+.btn-success {
+    @apply border-emerald-600 bg-emerald-600 text-white hover:border-emerald-700 hover:bg-emerald-700;
+}
+
+.modal-box {
+    @apply max-h-[90vh] w-[calc(100%-2rem)] rounded-2xl border border-gray-200 bg-white p-0 shadow-2xl sm:w-11/12;
+}
+
+.modal::backdrop {
+    background: rgb(15 23 42 / 0.45);
+    backdrop-filter: blur(3px);
+}
+
+.dataTables_wrapper {
+    @apply text-sm;
+}
+
+.dt-layout-row {
+    @apply my-0 flex flex-wrap items-center justify-between gap-3 px-5 py-4;
+}
+
+.dt-layout-table {
+    @apply block overflow-x-auto p-0;
+}
+
+.dt-search label,
+.dt-length label {
+    @apply flex items-center gap-2 text-sm text-slate-500;
+}
+
+.dt-search input,
+.dt-length select {
+    @apply rounded-xl border border-gray-200 bg-white px-3 py-2 outline-none transition focus:border-blue-400;
+}
+
+table.dataTable {
+    @apply w-full border-collapse;
+}
+
+table.dataTable thead th {
+    @apply whitespace-nowrap border-y border-gray-100 bg-slate-50 px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-slate-500;
+}
+
+table.dataTable tbody td {
+    @apply whitespace-nowrap border-b border-gray-100 px-4 py-3.5 align-middle text-sm;
+}
+
+table.dataTable tbody tr {
+    @apply transition hover:bg-blue-50/50;
+}
+
+.dt-info {
+    @apply text-sm text-slate-500;
+}
+
+.dt-paging {
+    @apply flex items-center gap-1;
+}
+
+.dt-paging-button {
+    @apply min-w-9 cursor-pointer rounded-lg border border-transparent px-3 py-2 text-sm text-slate-600 transition hover:border-gray-200 hover:bg-slate-50;
+}
+
+.dt-paging-button.current {
+    @apply border-blue-600 bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.dt-paging-button.disabled {
+    @apply cursor-not-allowed opacity-40;
+}
+
+.dt-processing {
+    @apply rounded-xl border border-gray-200 bg-white px-5 py-3 shadow-lg;
+}
+
+.nav-link {
+    @apply flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-semibold text-slate-500 transition hover:bg-blue-50 hover:text-blue-700;
+}
+
+.nav-link.active {
+    @apply bg-blue-600 text-white shadow-sm shadow-blue-200 hover:bg-blue-700 hover:text-white;
+}
+
+.nav-link svg {
+    @apply h-5 w-5 shrink-0;
+}
+
+.mobile-bottom-nav {
+    @apply fixed inset-x-0 bottom-0 z-50 flex min-h-[70px] items-start justify-around border-t border-slate-200 bg-white/95 px-1 pt-2 shadow-[0_-8px_30px_rgb(15_23_42_/_0.08)] backdrop-blur-xl;
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+.desktop-sidebar {
+    display: none;
+}
+
+.mobile-bottom-nav a {
+    @apply flex min-w-0 flex-1 flex-col items-center gap-1 rounded-xl px-1 py-1 text-center text-[10px] font-bold text-slate-400 transition duration-200;
+}
+
+.mobile-bottom-nav a svg {
+    @apply size-5;
+}
+
+.mobile-bottom-nav a.active {
+    @apply bg-blue-50 text-blue-700;
+}
+
+.mobile-fab {
+    @apply fixed bottom-[calc(5.5rem+env(safe-area-inset-bottom))] right-5 z-40 grid size-14 place-items-center rounded-full bg-blue-600 text-3xl font-light leading-none text-white shadow-lg shadow-blue-300 transition hover:scale-105 hover:bg-blue-700 active:scale-95;
+}
+
+.public-install-button {
+    @apply fixed bottom-5 right-5 z-40 inline-flex min-h-12 items-center gap-2 rounded-full bg-blue-600 px-5 text-sm font-bold text-white shadow-lg shadow-blue-300 transition duration-200 hover:-translate-y-0.5 hover:bg-blue-700 active:scale-95 sm:bottom-7 sm:right-7;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+.public-install-button svg {
+    @apply size-5 shrink-0;
+}
+
+.public-install-button.hidden {
+    display: none !important;
+}
+
+@media (min-width: 64rem) {
+    .desktop-sidebar {
+        display: flex !important;
+    }
+
+    .mobile-bottom-nav {
+        display: none !important;
+    }
+}
+
+@media (max-width: 63.999rem) {
+    .desktop-sidebar {
+        display: none !important;
+    }
+
+    .mobile-bottom-nav {
+        display: flex !important;
+    }
+}
+
+#toast-container > div {
+    @apply rounded-xl opacity-100 shadow-lg;
+}
+
+@media (max-width: 640px) {
+    .dt-layout-row {
+        @apply items-stretch;
+    }
+
+    .dt-search,
+    .dt-search input {
+        @apply w-full;
+    }
+
+    .dt-layout-row {
+        @apply px-4;
+    }
+
+    table.dataTable thead th,
+    table.dataTable tbody td {
+        @apply px-3;
+    }
 }

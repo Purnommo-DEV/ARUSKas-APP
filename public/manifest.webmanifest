@@ -1,0 +1,17 @@
+{
+  "name": "ARUSKas — Keuangan Kajian",
+  "short_name": "ARUSKas",
+  "description": "Pencatatan dan laporan keuangan kajian yang transparan.",
+  "lang": "id",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0f5fa9",
+  "background_color": "#eff6ff",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
