@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0f5fa9">
+    <title>ARUSKas sedang offline</title>
+    <style>
+        :root { color-scheme: light; font-family: Inter, system-ui, sans-serif; }
+        body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #eff6ff; color: #1e293b; }
+        main { width: min(28rem, calc(100% - 2rem)); box-sizing: border-box; padding: 2rem; text-align: center; border: 1px solid #dbeafe; border-radius: 1.5rem; background: #fff; box-shadow: 0 20px 45px rgb(15 95 169 / 0.12); }
+        img { width: 5rem; height: 5rem; border-radius: 1.25rem; }
+        h1 { margin: 1.25rem 0 .5rem; font-size: 1.5rem; }
+        p { margin: 0; line-height: 1.6; color: #64748b; }
+        button { margin-top: 1.5rem; border: 0; border-radius: .75rem; padding: .8rem 1rem; background: #0f5fa9; color: #fff; font: inherit; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <main>
+        <img src="/icons/icon-192.png" alt="ARUSKas">
+        <h1>Anda sedang offline</h1>
+        <p>Periksa koneksi internet, lalu coba buka laporan lagi. Halaman yang pernah dibuka tetap dapat tersedia dari cache.</p>
+        <button type="button" onclick="location.reload()">Coba lagi</button>
+    </main>
+</body>
+</html>
