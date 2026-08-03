@@ -80,24 +80,56 @@
                     <p class="text-sm font-semibold text-blue-600">Ringkasan periode</p>
                     <h2 class="mt-1 text-2xl font-black text-slate-800" data-summary="period">{{ $summary['period_label'] }}</h2>
                 </div>
-                <div class="grid gap-3 sm:grid-cols-2">
-                    <article class="surface-card p-5">
-                        <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Kas Awal</p>
-                        <p class="mt-2 text-xl font-black text-slate-800" data-summary="opening">Rp {{ number_format($summary['opening_balance'], 0, ',', '.') }}</p>
+                <div class="grid gap-4 md:grid-cols-3">
+
+                    <!-- Pemasukkan -->
+                    <article class="surface-card flex h-full flex-col justify-between rounded-2xl p-6">
+                        <p class="text-xs font-bold uppercase tracking-wider text-slate-400">
+                            Total Pemasukkan
+                        </p>
+
+                        <p class="mt-4 text-3xl font-black text-emerald-600"
+                        data-summary="cash-in">
+                            Rp {{ number_format($summary['cash_in'],0,',','.') }}
+                        </p>
+
+                        <p class="mt-3 text-xs text-slate-400">
+                            Total pemasukan periode ini
+                        </p>
                     </article>
-                    <article class="surface-card p-5">
-                        <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Cash In</p>
-                        <p class="mt-2 text-xl font-black text-emerald-600" data-summary="cash-in">Rp {{ number_format($summary['cash_in'], 0, ',', '.') }}</p>
+
+                    <!-- Pengeluaran -->
+                    <article class="surface-card flex h-full flex-col justify-between rounded-2xl p-6">
+                        <p class="text-xs font-bold uppercase tracking-wider text-slate-400">
+                            Total Pengeluaran
+                        </p>
+
+                        <p class="mt-4 text-3xl font-black text-red-500"
+                        data-summary="cash-out">
+                            Rp {{ number_format($summary['cash_out'],0,',','.') }}
+                        </p>
+
+                        <p class="mt-3 text-xs text-slate-400">
+                            Total pengeluaran periode ini
+                        </p>
                     </article>
-                    <article class="surface-card p-5">
-                        <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Cash Out</p>
-                        <p class="mt-2 text-xl font-black text-red-500" data-summary="cash-out">Rp {{ number_format($summary['cash_out'], 0, ',', '.') }}</p>
+
+                    <!-- Saldo -->
+                    <article class="flex h-full flex-col justify-between rounded-2xl bg-gradient-to-br from-blue-700 via-blue-600 to-blue-900 p-6 text-white shadow-xl">
+                        <p class="text-xs font-bold uppercase tracking-wider text-blue-100">
+                            Sisa Saldo Kas
+                        </p>
+
+                        <p class="mt-4 text-3xl font-black"
+                        data-summary="closing">
+                            Rp {{ number_format($summary['closing_balance'],0,',','.') }}
+                        </p>
+
+                        <p class="mt-3 text-xs text-blue-100">
+                            Kas Awal + Pemasukkan − Pengeluaran
+                        </p>
                     </article>
-                    <article class="rounded-2xl bg-gradient-to-br from-blue-700 to-blue-900 p-5 text-white shadow-lg">
-                        <p class="text-xs font-bold uppercase tracking-wider text-blue-100">Sisa Saldo Kas</p>
-                        <p class="mt-2 text-2xl font-black sm:text-3xl" data-summary="closing">Rp {{ number_format($summary['closing_balance'], 0, ',', '.') }}</p>
-                        <p class="mt-2 text-xs text-blue-100">Kas Awal + Cash In − Cash Out</p>
-                    </article>
+
                 </div>
             </div>
 

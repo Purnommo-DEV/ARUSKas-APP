@@ -19,7 +19,7 @@ class SettingRequest extends FormRequest
             'address' => ['nullable', 'string', 'max:1000'],
             'confirmation_phone' => ['nullable', 'string', 'max:30', 'regex:/^[0-9+()\-\s]+$/'],
             'thanks_message' => ['nullable', 'string', 'max:120'],
-            'blessing_message' => ['nullable', 'string', 'max:120'],
+            'blessing_message' => ['nullable', 'string'],
             'opening_balance' => ['required', 'integer', 'min:0', 'max:9000000000000000000'],
             'confirm_opening_balance_change' => ['nullable', 'boolean'],
             'qris_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],

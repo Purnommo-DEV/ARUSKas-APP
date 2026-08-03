@@ -41,24 +41,25 @@ class DatabaseSeeder extends Seeder
         $userRole->syncPermissions(['dashboard.view', 'finance.view']);
 
         $admin = User::query()->firstOrCreate(
-            ['email' => 'admin@example.com'],
+            ['email' => 'admin@aruskas.com'],
             ['name' => 'Administrator', 'password' => Hash::make('password')],
         );
         $admin->syncRoles(['admin']);
 
         $user = User::query()->firstOrCreate(
-            ['email' => 'user@example.com'],
+            ['email' => 'user@aruskas.com'],
             ['name' => 'User Laporan', 'password' => Hash::make('password')],
         );
         $user->syncRoles(['user']);
 
         $categories = [
-            ['name' => 'Infak Jamaah', 'type' => CategoryType::Income->value],
-            ['name' => 'Donasi', 'type' => CategoryType::Income->value],
-            ['name' => 'Mukafaah', 'type' => CategoryType::Expense->value],
-            ['name' => 'Setor Masjid', 'type' => CategoryType::Expense->value],
-            ['name' => 'Konsumsi', 'type' => CategoryType::Expense->value],
-            ['name' => 'Transport', 'type' => CategoryType::Expense->value],
+            ['name' => 'Iuran Jamaah',      'type' => CategoryType::Income->value],
+            ['name' => 'Infaq Jamaah',      'type' => CategoryType::Income->value],
+            ['name' => 'Subsidi Masjid',    'type' => CategoryType::Income->value],
+
+            ['name' => 'Mukafaah',          'type' => CategoryType::Expense->value],
+            ['name' => 'Marbot & Security', 'type' => CategoryType::Expense->value],
+            ['name' => 'Infaq Masjid',      'type' => CategoryType::Expense->value],
         ];
 
         foreach ($categories as $category) {
