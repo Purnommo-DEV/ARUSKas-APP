@@ -16,15 +16,20 @@ class PublicReportTest extends TestCase
             'study_name' => 'Kajian Ahad',
             'mosque_name' => 'Masjid Al-Ikhlas',
             'opening_balance' => 14_000,
+            'confirmation_phone' => '0812 3456 7890',
             'thanks_message' => 'Jazakumullahu Khairan',
             'blessing_message' => 'Baarakallahu Fiikum',
         ]);
+
+        $this->assertSame('6281234567890', Setting::current()->whatsapp_number);
 
         $this->get(route('public.report'))
             ->assertOk()
             ->assertSee('Laporan Keuangan Kajian')
             ->assertSee('Kajian Ahad')
             ->assertSee('Jazakumullahu Khairan')
+            ->assertSee('Chat via WhatsApp')
+            ->assertSee('https://wa.me/6281234567890')
             ->assertDontSee('Daftar Transaksi')
             ->assertDontSee('Detail Transaksi');
 
