@@ -27,6 +27,19 @@ class Setting extends Model
         ]);
     }
 
+    public function getWhatsappNumberAttribute(): ?string
+    {
+        $number = preg_replace('/\D+/', '', (string) $this->confirmation_phone);
+
+        if ($number === '') {
+            return null;
+        }
+
+        return str_starts_with($number, '0')
+            ? '62'.substr($number, 1)
+            : $number;
+    }
+
     protected function casts(): array
     {
         return [
