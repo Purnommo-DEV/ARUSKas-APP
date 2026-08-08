@@ -172,7 +172,7 @@
                                     <td class="whitespace-nowrap px-5 py-3.5 font-semibold text-slate-700">{{ $incomeTransaction->transaction_date->format('d/m/Y') }}</td>
                                     <td class="whitespace-nowrap px-5 py-3.5">{{ $incomeTransaction->category->name }}</td>
                                     <td class="whitespace-nowrap px-5 py-3.5"><span class="badge border-blue-100 bg-blue-50 text-blue-700">{{ $incomeTransaction->payment_method->label() }}</span></td>
-                                    <td class="px-5 py-3.5 text-slate-500">{{ $incomeTransaction->notes ?: '—' }}</td>
+                                    <td class="px-5 py-3.5 text-slate-500">{{ $incomeTransaction->party_name ?: '—' }}</td>
                                     <td class="whitespace-nowrap px-5 py-3.5 text-right font-black text-emerald-700">Rp {{ number_format($incomeTransaction->amount, 0, ',', '.') }}</td>
                                     <td class="whitespace-nowrap px-5 py-3.5">
                                         @if($incomeTransaction->proof_path)
@@ -203,8 +203,8 @@
                                     <button type="button" class="btn btn-ghost btn-xs text-blue-600" data-public-income-proof-url="{{ asset('storage/'.$incomeTransaction->proof_path) }}">Lihat Bukti</button>
                                 @endif
                             </div>
-                            @if($incomeTransaction->notes)
-                                <p class="mt-3 text-xs leading-5 text-slate-500">{{ $incomeTransaction->notes }}</p>
+                            @if($incomeTransaction->party_name)
+                                <p class="mt-3 text-xs leading-5 text-slate-500">{{ $incomeTransaction->party_name }}</p>
                             @endif
                         </article>
                     @endforeach
