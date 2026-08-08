@@ -10,7 +10,7 @@
                     <th class="px-5 py-3">Tanggal</th>
                     <th class="px-5 py-3">Metode Transaksi</th>
                     <th class="px-5 py-3">Kategori</th>
-                    <th class="px-5 py-3">Nama Jamaah / Vendor</th>
+                    <th class="px-5 py-3">Keterangan</th>
                     <th class="px-5 py-3 text-right">Cash In</th>
                     <th class="px-5 py-3 text-right">Cash Out</th>
                 </tr>

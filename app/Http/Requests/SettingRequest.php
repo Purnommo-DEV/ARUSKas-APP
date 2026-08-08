@@ -20,8 +20,6 @@ class SettingRequest extends FormRequest
             'confirmation_phone' => ['nullable', 'string', 'max:30', 'regex:/^[0-9+()\-\s]+$/'],
             'thanks_message' => ['nullable', 'string', 'max:120'],
             'blessing_message' => ['nullable', 'string'],
-            'opening_balance' => ['required', 'integer', 'min:0', 'max:9000000000000000000'],
-            'confirm_opening_balance_change' => ['nullable', 'boolean'],
             'qris_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ];
@@ -36,7 +34,6 @@ class SettingRequest extends FormRequest
             'confirmation_phone' => 'nomor konfirmasi',
             'thanks_message' => 'ucapan terima kasih',
             'blessing_message' => 'ucapan penutup',
-            'opening_balance' => 'saldo awal kas',
             'qris_image' => 'gambar QRIS',
             'logo' => 'logo kajian',
         ];

@@ -13,8 +13,6 @@ class Setting extends Model
         'confirmation_phone',
         'thanks_message',
         'blessing_message',
-        'opening_balance',
-        'opening_balance_set',
         'qris_image_path',
         'logo_path',
     ];
@@ -40,11 +38,4 @@ class Setting extends Model
             : $number;
     }
 
-    protected function casts(): array
-    {
-        return [
-            'opening_balance' => 'integer',
-            'opening_balance_set' => 'boolean',
-        ];
-    }
 }

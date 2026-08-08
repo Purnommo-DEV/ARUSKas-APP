@@ -16,7 +16,7 @@
                 <th>Tanggal</th>
                 <th>Metode Transaksi</th>
                 <th>Kategori</th>
-                <th>Nama Jamaah / Vendor</th>
+                <th>Keterangan</th>
                 <th class="text-right">Cash In</th>
                 <th class="text-right">Cash Out</th>
                 <th class="text-right">Balance</th>

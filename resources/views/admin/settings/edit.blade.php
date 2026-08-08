@@ -46,20 +46,6 @@
                     <p class="form-error" data-error-for="blessing_message"></p>
                 </div>
             </div>
-            <div>
-                <label for="opening_balance_display" class="form-label">Saldo Awal Kas</label>
-                <label class="input flex items-center gap-3">
-                    <span class="font-bold text-slate-400">Rp</span>
-                    <input id="opening_balance_display" type="text" inputmode="numeric" autocomplete="off" class="grow outline-none" data-raw-value="{{ $setting->opening_balance }}" @readonly($setting->opening_balance_set) placeholder="0">
-                </label>
-                <input id="opening_balance" name="opening_balance" type="hidden" value="{{ $setting->opening_balance }}">
-                <input id="confirm_opening_balance_change" name="confirm_opening_balance_change" type="hidden" value="0">
-                <div class="mt-2 flex flex-wrap items-center gap-3">
-                    <p id="opening-balance-hint" class="text-xs leading-5 text-slate-400">{{ $setting->opening_balance_set ? 'Saldo Awal Kas telah dikunci sebagai dasar seluruh perhitungan.' : 'Isi Saldo Awal Kas untuk menetapkan dasar seluruh pembukuan.' }}</p>
-                    <button id="change-opening-balance" type="button" class="btn btn-ghost btn-xs text-amber-700 {{ $setting->opening_balance_set ? '' : 'hidden' }}">Ubah Saldo Awal</button>
-                </div>
-                <p class="form-error" data-error-for="opening_balance"></p>
-            </div>
             <div class="grid gap-5 sm:grid-cols-2">
                 <div>
                     <label for="qris-image" class="form-label">QRIS Image</label>

@@ -32,8 +32,6 @@ class SettingController extends Controller
             'data' => [
                 'qris_url' => $setting->qris_image_path ? asset('storage/'.$setting->qris_image_path) : null,
                 'logo_url' => $setting->logo_path ? asset('storage/'.$setting->logo_path) : null,
-                'opening_balance' => $setting->opening_balance,
-                'opening_balance_set' => $setting->opening_balance_set,
             ],
         ]);
     }

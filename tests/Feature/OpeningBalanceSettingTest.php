@@ -2,61 +2,71 @@
 
 namespace Tests\Feature;
 
-use App\Models\Setting;
+use App\Models\OpeningBalance;
 use App\Models\User;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class OpeningBalanceSettingTest extends TestCase
+class OpeningBalanceManagementTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_opening_balance_is_saved_as_integer_then_locked_until_an_admin_confirms_a_change(): void
+    public function test_admin_can_manage_one_opening_balance_per_period_outside_settings(): void
     {
         $this->seed(DatabaseSeeder::class);
-        $admin = User::query()->where('email', 'admin@example.com')->firstOrFail();
+        $admin = User::query()->where('email', 'admin@aruskas.com')->firstOrFail();
 
         $this->actingAs($admin)
-            ->postJson(route('admin.settings.update'), $this->payload(14_000))
-            ->assertOk()
-            ->assertJsonPath('data.opening_balance', 14_000)
-            ->assertJsonPath('data.opening_balance_set', true);
+            ->postJson(route('admin.opening-balances.store'), $this->payload(14_000))
+            ->assertCreated()
+            ->assertJsonPath('data.opening_balance', 14_000);
 
-        $setting = Setting::current()->fresh();
-        $this->assertSame(14_000, $setting->opening_balance);
-        $this->assertTrue($setting->opening_balance_set);
-
-        $this->actingAs($admin)
-            ->get(route('admin.settings.edit'))
-            ->assertOk()
-            ->assertSee('data-raw-value="14000"', false)
-            ->assertSee('readonly', false)
-            ->assertSee('Ubah Saldo Awal');
+        $openingBalance = OpeningBalance::query()->firstOrFail();
+        $this->assertSame(14_000, $openingBalance->opening_balance);
+        $this->assertSame($admin->id, $openingBalance->created_by);
 
         $this->actingAs($admin)
-            ->postJson(route('admin.settings.update'), $this->payload(25_000))
+            ->postJson(route('admin.opening-balances.store'), $this->payload(20_000))
             ->assertUnprocessable()
-            ->assertJsonValidationErrors('opening_balance');
-
-        $this->assertSame(14_000, Setting::current()->fresh()->opening_balance);
+            ->assertJsonValidationErrors('period_year');
 
         $this->actingAs($admin)
-            ->postJson(route('admin.settings.update'), [
+            ->putJson(route('admin.opening-balances.update', $openingBalance), [
                 ...$this->payload(25_000),
-                'confirm_opening_balance_change' => true,
+                'notes' => 'Penyesuaian kas awal',
             ])
             ->assertOk()
             ->assertJsonPath('data.opening_balance', 25_000);
 
-        $this->assertSame(25_000, Setting::current()->fresh()->opening_balance);
+        $this->assertDatabaseHas('opening_balances', [
+            'id' => $openingBalance->id,
+            'opening_balance' => 25_000,
+            'notes' => 'Penyesuaian kas awal',
+        ]);
+
+        $this->actingAs($admin)
+            ->get(route('admin.settings.edit'))
+            ->assertOk()
+            ->assertDontSee('Saldo Awal Kas');
+
+        $this->actingAs($admin)
+            ->deleteJson(route('admin.opening-balances.destroy', $openingBalance))
+            ->assertOk();
+
+        $this->assertDatabaseMissing('opening_balances', ['id' => $openingBalance->id]);
+
+        $user = User::query()->where('email', 'user@aruskas.com')->firstOrFail();
+        $this->actingAs($user)
+            ->get(route('admin.opening-balances.index'))
+            ->assertForbidden();
     }
 
     private function payload(int $openingBalance): array
     {
         return [
-            'study_name' => 'Kajian Kita',
-            'mosque_name' => 'Masjid Kita',
+            'period_year' => 2026,
+            'period_month' => 8,
             'opening_balance' => $openingBalance,
         ];
     }

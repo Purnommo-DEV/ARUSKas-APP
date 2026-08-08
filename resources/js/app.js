@@ -8,6 +8,7 @@ import { initializeCategories } from './modules/categories';
 import { initializeTransactions } from './modules/transactions';
 import { initializeUsers } from './modules/users';
 import { initializeSettings } from './modules/settings';
+import { initializeOpeningBalances } from './modules/opening-balances';
 import { initializeLogin } from './modules/login';
 import { initializePublicReport } from './modules/public-report';
 import { initializePwa } from './pwa';
@@ -63,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeTransactions();
     initializeUsers();
     initializeSettings();
+    initializeOpeningBalances();
     initializePublicReport();
     initializePwa();
 });

@@ -44,9 +44,9 @@ class TransactionRequest extends FormRequest
             'transaction_date' => 'tanggal',
             'payment_method' => 'metode transaksi',
             'category_id' => 'kategori',
-            'party_name' => 'nama jamaah / vendor',
+            'party_name' => 'keterangan',
             'amount' => 'nominal',
-            'notes' => 'keterangan',
+            'notes' => 'catatan',
             'proof' => 'bukti transaksi',
         ];
     }

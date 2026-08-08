@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FinancialSummaryController;
+use App\Http\Controllers\Admin\OpeningBalanceController;
 use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TransactionController;
@@ -33,6 +34,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     Route::get('/summary', FinancialSummaryController::class)->name('summary');
     Route::get('/laporan', [AdminReportController::class, 'index'])->name('reports.index');
     Route::view('/profil', 'profile.show')->name('profile');
+
+    Route::get('/opening-balances/data', [OpeningBalanceController::class, 'data'])->name('opening-balances.data');
+    Route::resource('opening-balances', OpeningBalanceController::class)->except(['create', 'edit']);
 
     Route::get('/categories/data', [CategoryController::class, 'data'])->name('categories.data');
     Route::patch('/categories/{category}/toggle', [CategoryController::class, 'toggle'])->name('categories.toggle');

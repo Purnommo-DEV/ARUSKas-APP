@@ -39,6 +39,14 @@
                 @include('partials.icon', ['name' => 'report'])
                 Laporan
             </a>
+
+            <p class="mb-3 mt-8 px-3 text-[10px] font-extrabold uppercase tracking-[.2em] text-slate-400">Keuangan</p>
+            <a href="{{ route('admin.opening-balances.index') }}" class="nav-link {{ request()->routeIs('admin.opening-balances.*') ? 'active' : '' }}">
+                @include('partials.icon', ['name' => 'opening-balance'])
+                Kas Awal
+            </a>
+
+            <p class="mb-3 mt-8 px-3 text-[10px] font-extrabold uppercase tracking-[.2em] text-slate-400">Master Data</p>
             <a href="{{ route('admin.categories.index') }}" class="nav-link {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
                 @include('partials.icon', ['name' => 'category'])
                 Master Kategori
@@ -94,6 +102,7 @@
         <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">@include('partials.icon', ['name' => 'dashboard'])<span>Dashboard</span></a>
         <a href="{{ route('admin.transactions.index') }}" class="{{ request()->routeIs('admin.transactions.*') ? 'active' : '' }}">@include('partials.icon', ['name' => 'transaction'])<span>Transaksi</span></a>
         <a href="{{ route('admin.reports.index') }}" class="{{ request()->routeIs('admin.reports.*') ? 'active' : '' }}">@include('partials.icon', ['name' => 'report'])<span>Laporan</span></a>
+        <a href="{{ route('admin.opening-balances.index') }}" class="{{ request()->routeIs('admin.opening-balances.*') ? 'active' : '' }}">@include('partials.icon', ['name' => 'opening-balance'])<span>Kas Awal</span></a>
         <a href="{{ route('admin.settings.edit') }}" class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">@include('partials.icon', ['name' => 'settings'])<span>Pengaturan</span></a>
         <a href="{{ route('admin.profile') }}" class="{{ request()->routeIs('admin.profile') ? 'active' : '' }}">@include('partials.icon', ['name' => 'profile'])<span>Profil</span></a>
     </nav>

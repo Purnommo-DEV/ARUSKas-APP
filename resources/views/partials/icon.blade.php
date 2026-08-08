@@ -11,6 +11,9 @@
     @case('report')
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 3.5h8.2L19 7.3V20a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 6 20V5a1.5 1.5 0 0 1 1-1.5Z" stroke-linejoin="round"/><path d="M15 3.5V8h4M9 12h6M9 16h6" stroke-linecap="round"/></svg>
         @break
+    @case('opening-balance')
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7.5h16v10H4z" stroke-linejoin="round"/><path d="M7.5 7.5V6a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v1.5M15.5 12.5h.01" stroke-linecap="round"/></svg>
+        @break
     @case('profile')
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0" stroke-linecap="round"/></svg>
         @break

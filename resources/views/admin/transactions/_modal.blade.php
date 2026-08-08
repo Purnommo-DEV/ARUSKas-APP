@@ -48,7 +48,7 @@
             </div>
 
             <div>
-                <label class="form-label" for="party_name">Nama Jamaah / Vendor</label>
+                <label class="form-label" for="party_name">Keterangan</label>
                 <input id="party_name" name="party_name" type="text" maxlength="150" class="input" placeholder="Contoh: Hamba Allah / Vendor Konsumsi">
                 <p class="form-error" data-error-for="party_name"></p>
             </div>
@@ -65,7 +65,7 @@
             </div>
 
             <div>
-                <label class="form-label" for="notes">Keterangan <span class="font-normal text-slate-400">(opsional)</span></label>
+                <label class="form-label" for="notes">Catatan <span class="font-normal text-slate-400">(opsional)</span></label>
                 <textarea id="notes" name="notes" rows="3" maxlength="1000" class="textarea" placeholder="Tambahkan catatan bila diperlukan"></textarea>
                 <p class="form-error" data-error-for="notes"></p>
             </div>

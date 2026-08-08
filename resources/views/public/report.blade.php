@@ -136,6 +136,82 @@
             </aside>
         </section>
 
+        <section id="detail-pemasukan" class="surface-card overflow-hidden">
+            <div class="flex flex-col gap-3 border-b border-gray-100 px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <p class="text-sm font-semibold text-emerald-700">Transparansi infak dan donasi</p>
+                    <h2 class="mt-1 text-xl font-black text-slate-800">Detail Pemasukan</h2>
+                    <p class="mt-1 text-xs leading-5 text-slate-400">Catatan pemasukan pada periode yang dipilih, diurutkan dari transaksi terbaru.</p>
+                </div>
+                <span class="badge border-emerald-200 bg-emerald-50 text-emerald-700" data-public-income-period>{{ $summary['period_label'] }}</span>
+            </div>
+
+            <div data-public-income-empty class="{{ $incomeTransactions->isNotEmpty() ? 'hidden' : '' }} px-5 py-12 text-center">
+                <span class="mx-auto grid size-12 place-items-center rounded-2xl bg-emerald-50 text-emerald-700">
+                    <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/><path d="M5 19h14"/></svg>
+                </span>
+                <p class="mt-4 text-sm font-bold text-slate-700">Belum ada pemasukan pada periode ini.</p>
+            </div>
+
+            <div data-public-income-content class="{{ $incomeTransactions->isEmpty() ? 'hidden' : '' }}">
+                <div class="hidden overflow-x-auto sm:block">
+                    <table class="w-full text-sm">
+                        <thead class="border-y border-gray-100 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-500">
+                            <tr>
+                                <th class="whitespace-nowrap px-5 py-3">Tanggal</th>
+                                <th class="whitespace-nowrap px-5 py-3">Kategori</th>
+                                <th class="whitespace-nowrap px-5 py-3">Metode Transaksi</th>
+                                <th class="px-5 py-3">Keterangan</th>
+                                <th class="whitespace-nowrap px-5 py-3 text-right">Nominal</th>
+                                <th class="whitespace-nowrap px-5 py-3">Bukti</th>
+                            </tr>
+                        </thead>
+                        <tbody data-public-income-table>
+                            @foreach($incomeTransactions as $incomeTransaction)
+                                <tr class="border-b border-gray-100 transition hover:bg-emerald-50/40">
+                                    <td class="whitespace-nowrap px-5 py-3.5 font-semibold text-slate-700">{{ $incomeTransaction->transaction_date->format('d/m/Y') }}</td>
+                                    <td class="whitespace-nowrap px-5 py-3.5">{{ $incomeTransaction->category->name }}</td>
+                                    <td class="whitespace-nowrap px-5 py-3.5"><span class="badge border-blue-100 bg-blue-50 text-blue-700">{{ $incomeTransaction->payment_method->label() }}</span></td>
+                                    <td class="px-5 py-3.5 text-slate-500">{{ $incomeTransaction->notes ?: '—' }}</td>
+                                    <td class="whitespace-nowrap px-5 py-3.5 text-right font-black text-emerald-700">Rp {{ number_format($incomeTransaction->amount, 0, ',', '.') }}</td>
+                                    <td class="whitespace-nowrap px-5 py-3.5">
+                                        @if($incomeTransaction->proof_path)
+                                            <button type="button" class="btn btn-ghost btn-xs text-blue-600" data-public-income-proof-url="{{ asset('storage/'.$incomeTransaction->proof_path) }}">Lihat Bukti</button>
+                                        @else
+                                            <span class="text-slate-300">—</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="space-y-3 p-4 sm:hidden" data-public-income-mobile>
+                    @foreach($incomeTransactions as $incomeTransaction)
+                        <article class="rounded-2xl border border-emerald-100 bg-emerald-50/40 p-4">
+                            <div class="flex items-start justify-between gap-3">
+                                <div>
+                                    <p class="text-xs font-semibold text-slate-400">{{ $incomeTransaction->transaction_date->format('d/m/Y') }}</p>
+                                    <p class="mt-1 font-bold text-slate-800">{{ $incomeTransaction->category->name }}</p>
+                                </div>
+                                <p class="whitespace-nowrap text-base font-black text-emerald-700">Rp {{ number_format($incomeTransaction->amount, 0, ',', '.') }}</p>
+                            </div>
+                            <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                                <span class="badge border-blue-100 bg-blue-50 text-blue-700">{{ $incomeTransaction->payment_method->label() }}</span>
+                                @if($incomeTransaction->proof_path)
+                                    <button type="button" class="btn btn-ghost btn-xs text-blue-600" data-public-income-proof-url="{{ asset('storage/'.$incomeTransaction->proof_path) }}">Lihat Bukti</button>
+                                @endif
+                            </div>
+                            @if($incomeTransaction->notes)
+                                <p class="mt-3 text-xs leading-5 text-slate-500">{{ $incomeTransaction->notes }}</p>
+                            @endif
+                        </article>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
         <section class="grid gap-5 sm:grid-cols-2">
             <article class="surface-card p-5">
                 <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Ucapan</p>
@@ -158,6 +234,8 @@
             </article>
         </section>
     </main>
+
+    @include('partials.proof-modal')
 
     <button id="pwa-install" type="button" class="public-install-button hidden" aria-label="Install aplikasi ARUSKas">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14" stroke-linecap="round" stroke-linejoin="round"/></svg>

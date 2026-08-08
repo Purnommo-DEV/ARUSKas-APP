@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class, 'created_by');
     }
+
+    public function openingBalances(): HasMany
+    {
+        return $this->hasMany(OpeningBalance::class, 'created_by');
+    }
 }

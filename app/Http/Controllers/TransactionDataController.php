@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Setting;
 use App\Services\FinancialReportService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -18,17 +17,15 @@ class TransactionDataController extends Controller
             'month' => ['nullable', 'integer', 'between:1,12'],
             'year' => ['nullable', 'integer', 'between:2000,2100'],
         ]);
-        $month = isset($validated['month'], $validated['year']) ? (int) $validated['month'] : null;
-        $year = isset($validated['month'], $validated['year']) ? (int) $validated['year'] : null;
-        $openingBalance = $month && $year
-            ? $this->financialReportService->summary($month, $year)['opening_balance']
-            : (int) Setting::current()->opening_balance;
+        $month = (int) ($validated['month'] ?? now()->month);
+        $year = (int) ($validated['year'] ?? now()->year);
+        $summary = $this->financialReportService->summary($month, $year);
 
         return DataTables::query($this->financialReportService->transactionTableQuery($month, $year))
             ->addColumn('proof_url', fn (object $transaction): ?string => $transaction->proof_path
                 ? asset('storage/'.$transaction->proof_path)
                 : null)
-            ->with('opening_balance', $openingBalance)
+            ->with('opening_balance', $summary['opening_balance'])
             ->toJson();
     }
 }

@@ -16,15 +16,13 @@
             <div>
                 <label for="transaction-month-filter" class="form-label">Filter Bulan</label>
                 <select id="transaction-month-filter" class="select select-sm min-w-36" aria-label="Filter bulan">
-                    <option value="">Semua bulan</option>
-                    @foreach($months as $number => $label)<option value="{{ $number }}">{{ $label }}</option>@endforeach
+                    @foreach($months as $number => $label)<option value="{{ $number }}" @selected($number === now()->month)>{{ $label }}</option>@endforeach
                 </select>
             </div>
             <div>
                 <label for="transaction-year-filter" class="form-label">Filter Tahun</label>
                 <select id="transaction-year-filter" class="select select-sm min-w-28" aria-label="Filter tahun">
-                    <option value="">Semua tahun</option>
-                    @foreach($years as $item)<option value="{{ $item }}">{{ $item }}</option>@endforeach
+                    @foreach($years as $item)<option value="{{ $item }}" @selected($item === now()->year)>{{ $item }}</option>@endforeach
                 </select>
             </div>
         </div>
